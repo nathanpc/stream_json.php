@@ -1,3 +1,3 @@
 # stream_json.php
 
-A HTML5 stream.json client.
+HTML5 stream.json client written in PHP
