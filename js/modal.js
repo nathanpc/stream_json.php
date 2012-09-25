@@ -4,6 +4,11 @@
 var modal = {
   open: function(title, poster, description) {
     modal.populate(title, poster, description);
+    
+    $("#modal-poster").error(function(){
+      $(this).attr("src", "img/no-poster-placeholder.png");
+    });
+    
     $("#movie-modal").modal("show");
   },
   populate: function(title, poster, description) {
