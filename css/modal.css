@@ -1,0 +1,12 @@
+/* modal.css */
+/* Modal styling */
+
+.modal-body #modal-poster {
+  max-width: 200px;
+  float: left;
+  margin-right: 10px;
+}
+
+.modal-body #modal-movie-title {
+  margin-top: 0;
+}

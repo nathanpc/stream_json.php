@@ -1,0 +1,14 @@
+/* main.css */
+/* The general styling goes here */
+
+#poster-list {
+  margin-top: 62px;
+}
+
+footer {
+  padding-bottom: 20px;
+}
+
+.hidden {
+  display: none;
+}

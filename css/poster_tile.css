@@ -1,0 +1,29 @@
+/* poster_tile.css */
+/* Styles the poster tiles */
+
+#poster-list :first-child {
+  margin-top: 0;
+}
+
+.row-fluid {
+  margin-top: 20px;
+}
+
+.poster-tile {
+  padding: 10px;
+  
+  background-color: whiteSmoke;
+  border: 1px solid #E4E4E4;
+  box-shadow: 0 0 10px 0px #E2E2E2;
+  
+  text-align: center;
+}
+
+.poster-tile :hover {
+  border: 1px solid #95C7E4;
+  box-shadow: 0 0 10px 0px #39A9E9;
+}
+
+.poster-tile img {
+  max-width: 188px;
+}
