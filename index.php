@@ -50,13 +50,24 @@
     
     <div id="poster-list" class="container">
       <?php
+        require_once("libs/php-markdown/markdown.php");
+      
         function populate_posters($json) {
           foreach ($json->video as $index=>$video) {
             if (($index % 4) == 0) {
               echo "<div class=\"row-fluid\">";
             }
             
-            echo "<div class=\"span3 poster-tile\" onclick=\"modal.open('" . $video->title . "', 'http://localhost:4881/getPoster/" . $video->id . "', '" . substr(json_encode($video->description->text), 1, -1) . "');\">";
+            $desc = "";
+            if ($video->description->format == "plain") {
+              $desc = str_replace("\n", "<br />", $video->description->text);
+            } else if ($video->description->format == "md") {
+              $desc = Markdown($video->description->text);
+            } else if ($video->description->format == "html") {
+              $desc = $video->description->text;
+            }
+            
+            echo "<div class=\"span3 poster-tile\" onclick=\"modal.open('" . $video->title . "', 'http://localhost:4881/getPoster/" . $video->id . "', '" . substr(json_encode($desc), 1, -1) . "');\">";
 
             echo "<img src=\"http://localhost:4881/getPoster/" . $video->id . "\" class=\"img-polaroid\" onerror=\"image.error(this);\" />";
             echo "<b>" . $video->title . "</b>";
