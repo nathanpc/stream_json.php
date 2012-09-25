@@ -24,8 +24,8 @@
         <div class="container">
           <a class="brand" href="#">stream_json.php</a>
           <ul class="nav">
-            <li id="home-nav-tab" class="active"><a href="#">Home</a></li>
-            <li id="watching-nav-tab"><a href="#">Currently Watching</a></li>
+            <li id="home-nav-tab" class="active" onclick="nav_tab.click(this);"><a href="#">Home</a></li>
+            <li id="watching-nav-tab" onclick="nav_tab.click(this);"><a href="#">Currently Watching</a></li>
           </ul>
         </div>
       </div>
@@ -44,7 +44,7 @@
         <div id="movie-description"></div>
       </div>
       <div class="modal-footer">
-        <a href="#" class="btn btn-primary">Watch</a>
+        <a href="#" id="watch-button" class="btn btn-primary">Watch</a>
       </div>
     </div>
     
@@ -67,7 +67,7 @@
               $desc = $video->description->text;
             }
             
-            echo "<div class=\"span3 poster-tile\" onclick=\"modal.open('" . $video->title . "', 'http://localhost:4881/getPoster/" . $video->id . "', '" . substr(json_encode($desc), 1, -1) . "');\">";
+            echo "<div class=\"span3 poster-tile\" onclick=\"modal.open('" . $video->title . "', 'http://localhost:4881/getPoster/" . $video->id . "', '" . substr(json_encode($desc), 1, -1) . "', '" . $video->id . "');\">";
 
             echo "<img src=\"http://localhost:4881/getPoster/" . $video->id . "\" class=\"img-polaroid\" onerror=\"image.error(this);\" />";
             echo "<b>" . $video->title . "</b>";
@@ -102,7 +102,17 @@
         $videos = get_video_list();
         populate_posters($videos);
       ?>
-      
+    </div>
+    
+    <div id="currently-watching" class="container hidden">
+      <div align="center">
+        <video src="" controls="controls">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    
+    <div class="container">
       <hr>
       <footer>
         <a href="http://nathanpc.github.com/stream.json/">stream.json</a> and <a href="http://nathanpc.github.com/stream_json.php/">stream_json.php</a> were written by <a href="http://about.me/nathanpc">Nathan Campos</a> and licensed under <a href="www.gnu.org/copyleft/gpl.html">GPLv3</a>.
