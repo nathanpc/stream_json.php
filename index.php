@@ -49,24 +49,48 @@
     </div>
     
     <div id="poster-list" class="container">
-      <div class="row-fluid">
-        <div class="span3 poster-tile" onclick="modal.open('Some awesome movie title', 'Indie-Games.jpg', 'This is an awesome description oh yeah!');">
-          <img src="Indie-Game.jpg" class="img-polaroid" onerror="image.error(this);" />
-          <b>Indie Game: The Movie, testing the overflow stuff. Hope this works</b>
-        </div>
-        <div class="span3 poster-tile">
-          <img src="Indie-Game.jpg" class="img-polaroid" onerror="image.error(this);" />
-          <b>Indie Game: The Movie</b>
-        </div>
-        <div class="span3 poster-tile">
-          <img src="Indie-Games.jpg" class="img-polaroid" onerror="image.error(this);" />
-          <b>Indie Game: The Movie</b>
-        </div>
-        <div class="span3 poster-tile">
-          <img src="Indie-Game.jpg" class="img-polaroid" onerror="image.error(this);" />
-          <b>Indie Game: The Movie</b>
-        </div>
-      </div>
+      <?php
+        function populate_posters($json) {
+          foreach ($json->video as $index=>$video) {
+            if (($index % 4) == 0) {
+              echo "<div class=\"row-fluid\">";
+            }
+            
+            echo "<div class=\"span3 poster-tile\" onclick=\"modal.open('" . $video->title . "', 'http://localhost:4881/getPoster/" . $video->id . "', '" . substr(json_encode($video->description->text), 1, -1) . "');\">";
+
+            echo "<img src=\"http://localhost:4881/getPoster/" . $video->id . "\" class=\"img-polaroid\" onerror=\"image.error(this);\" />";
+            echo "<b>" . $video->title . "</b>";
+            
+            echo"</div>";
+            
+            if ($index > 0) {
+              if ((($index + 1) % 4) == 0) {
+                echo"</div>";
+              } else if ($index == (count($json->video) - 1)) {
+                echo"</div>";
+              }
+            }
+          }
+        }
+        
+        function get_video_list() {
+          $url = "http://localhost:4881/list";
+        	$opts = array("http" =>
+            array(
+              "method"  => "GET",
+              "timeout" => 60
+            )
+          );
+
+          $context  = stream_context_create($opts);
+          $result = file_get_contents($url, false, $context, -1, 40000);
+
+          return json_decode($result);
+        }
+        
+        $videos = get_video_list();
+        populate_posters($videos);
+      ?>
       
       <hr>
       <footer>
