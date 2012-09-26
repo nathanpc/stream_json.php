@@ -77,7 +77,8 @@ var button = {
         data: {
           "id": $("#id").val(),
           "title": $("#title").val(),
-          "poster": $("#poster").val(),
+          "poster_remote": $("input[name=poster_remote]:checked").val(),
+          "poster_location": $("#poster").val(),
           "file_remote": $("input[name=file_remote]:checked").val(),
           "file_location": $("#file_location").val(),
           "description_format": $("#description_format").val(),

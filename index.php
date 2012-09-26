@@ -72,11 +72,27 @@
           <hr>
           
           <div class="control-group">
+            <label class="control-label" for="poster_remote">Location Type</label>
+            <div class="controls">
+              <label class="radio inline">
+                <input type="radio" name="poster_remote" value="false" checked>
+                Local
+              </label>
+              <label class="radio inline">
+                <input type="radio" name="poster_remote" value="true">
+                Remote
+              </label>
+            </div>
+          </div>
+          
+          <div class="control-group">
             <label class="control-label" for="poster">Poster</label>
             <div class="controls">
               <input type="text" id="poster" placeholder="Poster" />
             </div>
           </div>
+          
+          <hr>
           
           <div class="control-group">
             <label class="control-label" for="file_remote">Location Type</label>
