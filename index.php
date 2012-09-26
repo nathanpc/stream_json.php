@@ -31,7 +31,7 @@
       </div>
     </div>
     
-    <!-- Modal -->
+    <!-- Modals -->
     <div class="modal hide fade" id="movie-modal">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -48,7 +48,90 @@
       </div>
     </div>
     
+    <div class="modal hide fade" id="add-modal">
+      <div class="modal-header">
+        <button type="button" class="close" onclick="button.click('cancel-add-modal');" aria-hidden="true">&times;</button>
+        <h3 id="modal-title-header">Add Video</h3>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label" for="id">ID</label>
+            <div class="controls">
+              <input type="text" id="id" placeholder="ID" />
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="title">Title</label>
+            <div class="controls">
+              <input type="text" id="title" placeholder="Title" />
+            </div>
+          </div>
+          
+          <hr>
+          
+          <div class="control-group">
+            <label class="control-label" for="poster">Poster</label>
+            <div class="controls">
+              <input type="text" id="poster" placeholder="Poster" />
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="file_remote">Location Type</label>
+            <div class="controls">
+              <label class="radio inline">
+                <input type="radio" name="file_remote" value="false" checked>
+                Local
+              </label>
+              <label class="radio inline">
+                <input type="radio" name="file_remote" value="true">
+                Remote
+              </label>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="file_location">Video Location</label>
+            <div class="controls">
+              <input type="text" id="file_location" placeholder="Video Location" />
+            </div>
+          </div>
+          
+          <hr>
+          
+          <div class="control-group">
+            <label class="control-label" for="description_format">Description Format</label>
+            <div class="controls">
+              <select id="description_format" name="description_format">
+                <option value="plain">Plain Text</option>
+                <option value="md">Markdown</option>
+                <option value="html">HTML</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="description">Description</label>
+            <div class="controls">
+              <textarea rows="3" name="description" placeholder="Description"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" onclick="button.click('cancel-add-modal');">Cancel</a>
+        <a href="#" id="watch-button" class="btn btn-primary">Add Video</a>
+      </div>
+    </div>
+    
+    <!-- Bodies -->
     <div id="poster-list" class="container">
+      <div id="button-group" align="right">
+        <button class="btn btn-inverse" type="button" onclick="button.click('add-video');">Add Video</button>
+      </div>
+
       <?php
         require_once("libs/php-markdown/markdown.php");
       

@@ -53,3 +53,13 @@ var video = {
     }
   }
 };
+
+var button = {
+  click: function(button) {
+    if (button == "add-video") {
+      $("#add-modal").modal("show");
+    } else if (button == "cancel-add-modal") {
+      $("#add-modal").modal("hide");
+    }
+  }
+}
