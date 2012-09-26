@@ -1,3 +1,10 @@
+<?php
+  if (!isset($_COOKIE["server"])) {
+    header("Location: login.html");
+    exit;
+  }
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -166,9 +173,9 @@
               $desc = $video->description->text;
             }
             
-            echo "<div class=\"span3 poster-tile\" onclick='modal.open(\"" . $video->title . "\", \"http://localhost:4881/getPoster/" . $video->id . "\", \"" . substr(json_encode($desc), 1, -1) . "\", \"" . $video->id . "\");'>";
+            echo "<div class=\"span3 poster-tile\" onclick='modal.open(\"" . $video->title . "\", \"http://" . $_COOKIE["server"] . "/getPoster/" . $video->id . "\", \"" . substr(json_encode($desc), 1, -1) . "\", \"" . $video->id . "\");'>";
 
-            echo "<img src=\"http://localhost:4881/getPoster/" . $video->id . "\" class=\"img-polaroid\" onerror=\"image.error(this);\" />";
+            echo "<img src=\"http://" . $_COOKIE["server"] . "/getPoster/" . $video->id . "\" class=\"img-polaroid\" onerror=\"image.error(this);\" />";
             echo "<b>" . $video->title . "</b>";
             
             echo"</div>";
@@ -184,7 +191,7 @@
         }
         
         function get_video_list() {
-          $url = "http://localhost:4881/list";
+          $url = "http://" . $_COOKIE["server"] . "/list";
         	$opts = array("http" =>
             array(
               "method"  => "GET",

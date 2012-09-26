@@ -1,6 +1,6 @@
 <?php
 
-$url = "http://localhost:4881/getVideo/" . $_GET["id"];
+$url = "http://" . $_COOKIE["server"] . "/getVideo/" . $_GET["id"];
 $opts = array("http" =>
   array(
     "method"  => "GET",

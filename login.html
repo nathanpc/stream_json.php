@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>stream_json.php</title>
+    
+    <!-- Libraries -->
+    <script src="libs/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script src="libs/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <!-- NavBar -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">stream_json.php</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container" style="margin-top: 62px;">
+      <div class="row-fluid">
+        <div class="span8">
+          <div class="hero-unit">
+            <h1>Welcome!</h1>
+            <p>The geek's home media streaming client.</p>
+          </div>
+        </div>
+        <div class="span4" style="background-color: #EEE; text-align: center; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; min-height: 40px; line-height: 40px;">
+          <form class="form-horizontal" method="POST" action="save_conf.php" style="margin-top: 20px;">
+            <label for="server_location">Server Location</label>
+            <input type="text" name="server_location" placeholder="localhost:4881" />
+            
+            <br />
+            
+            <input type="submit" value="Save" class="btn btn-primary" />
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div id="footer-container" class="container">
+      <hr>
+      <footer>
+        <a href="http://nathanpc.github.com/stream.json/">stream.json</a> and <a href="http://nathanpc.github.com/stream_json.php/">stream_json.php</a> were written by <a href="http://about.me/nathanpc">Nathan Campos</a> and licensed under <a href="www.gnu.org/copyleft/gpl.html">GPLv3</a>.
+      </footer>
+    </div>
+  </body>
+</html>
