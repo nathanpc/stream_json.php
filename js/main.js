@@ -1,6 +1,15 @@
 // main.js
 // The main/general stuff
 
+$(document).ready(function() {
+  $("#add-video-form").bind("submit", function (e) {
+    
+
+    e.preventDefault();
+    return false;
+  });
+});
+
 var image = {
   error: function(image) {
     image.onerror = "";
@@ -36,12 +45,13 @@ var nav_tab = {
 };
 
 var video = {
-  set_video: function(src) {
+  set_video: function(src, poster) {
     var tag = document.getElementsByTagName('video')[0];
     
     tag.src = src;
     tag.load();
     video.prepare_width(tag);
+    tag.poster = poster;
     
     $("#movie-modal").modal("hide");
   },
@@ -60,6 +70,41 @@ var button = {
       $("#add-modal").modal("show");
     } else if (button == "cancel-add-modal") {
       $("#add-modal").modal("hide");
+    } else if (button == "add-video-send") {
+      $.ajax({
+        type: "POST",
+        url: "add_video.php",
+        data: {
+          "id": $("#id").val(),
+          "title": $("#title").val(),
+          "poster": $("#poster").val(),
+          "file_remote": $("input[name=file_remote]:checked").val(),
+          "file_location": $("#file_location").val(),
+          "description_format": $("#description_format").val(),
+          "description": $("#description").val()
+        },
+        success: function (result) {
+          console.log("New video added.");
+          try {
+            console.log(JSON.parse(result));
+          } catch(e) {
+            alert("Error while trying to parse the server response. Please check the logs (web console) for more information.");
+            
+            console.log("Error while trying to parse the server response.");
+            console.log(result);
+            console.log(e);
+          }
+          
+          $("#add-modal").modal("hide");
+          location.reload();
+        },
+        error: function(data) {
+          console.log("An error occurred while trying to add your video.");
+          console.log(data);
+
+          alert("An error occurred while trying to add your video. Please check the logs (in the Web Console) for more information.");
+        }
+      });
     }
   }
 }

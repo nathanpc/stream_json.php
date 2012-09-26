@@ -9,7 +9,11 @@
   margin-top: 62px;
 }
 
-footer {
+#footer-container {
+  padding-top: 30px;
+}
+
+#footer-container footer {
   padding-bottom: 20px;
 }
 

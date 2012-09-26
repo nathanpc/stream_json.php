@@ -20,11 +20,12 @@ var modal = {
   },
   watch_video: function(id) {
     var req_url = "get_video_url.php?id=" + id;
+    var poster_url = "http://localhost:4881/getPoster/" + id;
     
     $.ajax(req_url, {
       type: "GET",
       success: function(src) {
-        video.set_video(src);
+        video.set_video(src, poster_url);
         nav_tab.to_current_watching();
       },
       error: function(data) {

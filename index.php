@@ -54,7 +54,7 @@
         <h3 id="modal-title-header">Add Video</h3>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal">
+        <form id="add-video-form" class="form-horizontal" action="add_video.php">
           <div class="control-group">
             <label class="control-label" for="id">ID</label>
             <div class="controls">
@@ -115,14 +115,14 @@
           <div class="control-group">
             <label class="control-label" for="description">Description</label>
             <div class="controls">
-              <textarea rows="3" name="description" placeholder="Description"></textarea>
+              <textarea rows="3" id="description" name="description" placeholder="Description"></textarea>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <a href="#" class="btn" onclick="button.click('cancel-add-modal');">Cancel</a>
-        <a href="#" id="watch-button" class="btn btn-primary">Add Video</a>
+        <a href="#" id="add-video-button" class="btn btn-primary" onclick="button.click('add-video-send');">Add Video</a>
       </div>
     </div>
     
@@ -150,7 +150,7 @@
               $desc = $video->description->text;
             }
             
-            echo "<div class=\"span3 poster-tile\" onclick=\"modal.open('" . $video->title . "', 'http://localhost:4881/getPoster/" . $video->id . "', '" . substr(json_encode($desc), 1, -1) . "', '" . $video->id . "');\">";
+            echo "<div class=\"span3 poster-tile\" onclick='modal.open(\"" . $video->title . "\", \"http://localhost:4881/getPoster/" . $video->id . "\", \"" . substr(json_encode($desc), 1, -1) . "\", \"" . $video->id . "\");'>";
 
             echo "<img src=\"http://localhost:4881/getPoster/" . $video->id . "\" class=\"img-polaroid\" onerror=\"image.error(this);\" />";
             echo "<b>" . $video->title . "</b>";
@@ -189,13 +189,13 @@
     
     <div id="currently-watching" class="container hidden">
       <div align="center">
-        <video src="" controls="controls">
-          Your browser does not support the video tag.
+        <video src="" controls="controls" poster="">
+          Your browser does not support the HTML5 video tag. What are you using? IE?!
         </video>
       </div>
     </div>
     
-    <div class="container">
+    <div id="footer-container" class="container">
       <hr>
       <footer>
         <a href="http://nathanpc.github.com/stream.json/">stream.json</a> and <a href="http://nathanpc.github.com/stream_json.php/">stream_json.php</a> were written by <a href="http://about.me/nathanpc">Nathan Campos</a> and licensed under <a href="www.gnu.org/copyleft/gpl.html">GPLv3</a>.
